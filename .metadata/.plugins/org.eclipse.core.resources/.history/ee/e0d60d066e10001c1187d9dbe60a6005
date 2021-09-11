@@ -1,0 +1,49 @@
+<div xmlns:th="http://www.thymeleaf.org"
+	style="width: 100%; margin-bottom: 20px;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/">SUPER STORE</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="/">Trang chủ</a></li>
+					<th:block th:if="${#request.remoteUser}">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/order/list}">Ä�Æ¡n hĂ ng</a></li>
+					</th:block>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Phân loại</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown"
+							style="width: 250px">
+							<li><a class="dropdown-item" href="/">Tất cả</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li th:each="c : ${cates}"><a class="dropdown-item"
+								th:href="@{|/product/list?cid=${c.id}|}">[[${c.name}]]</a></li>
+						</ul></li>
+						<li
+						th:unless="${#request.remoteUser}"
+						class="nav-item"><a class="nav-link" th:href="@{/security/login/form}">Đăng nhập</a></li>
+						<li
+						th:if="${#request.remoteUser}"
+						class="nav-item"><a class="nav-link" th:href="@{/security/logoff}">Đăng xuất</a></li>
+					<li
+						th:if="${#request.isUserInRole('PM') or #request.isUserInRole('ADMIN')}"
+						class="nav-item"><a class="nav-link" th:href="@{/admin}">Quản trị viên</a></li>
+				</ul>
+				<form class="d-flex">
+					<a th:href="@{/cart/view}" class="btn btn-outline-dark"
+						type="submit"> <i class="bi-cart-fill me-1"></i> Giỏ hàng <span
+						class="badge bg-dark text-white ms-1 rounded-pill">{{cart.count}}</span>
+					</a>
+				</form>
+			</div>
+		</div>
+	</nav>
+</div>

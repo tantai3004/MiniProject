@@ -1,0 +1,21 @@
+package taidtpc00715;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class TestLogin {
+
+	public WebDriver driver;
+
+	@DataProvider(name = "db")
+	public Object[][] createData() {
+		return new Object[][] { { "tantai3004", "123", true }, { "tantai3004", "12", false }
+
+		};
+	}
+
+	@Test
+	public void login() {
+	}
+}

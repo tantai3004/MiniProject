@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main style="margin-top: -20px">
+		<div class="login_form_wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-2"></div>
+					<div class="col-md-8 col-md-offset-2">
+						<!-- login_wrapper -->
+						<div class="login_wrapper" style="margin-top: 30px">
+							<form th:action="@{/security/login}" method="post">
+								<h1><b>Đăng nhập</b></h1>
+
+								<div class="formsix-pos">
+									<div class="form-group i-email">
+										<input type="text" class="form-control" required="required"
+											id="email2" placeholder="TĂ i khoáº£n *" name="username">
+									</div>
+								</div>
+								<div class="formsix-e">
+									<div class="form-group i-password">
+										<input type="password" class="form-control"
+											required="required" id="password2" placeholder="Máº­t kháº©u *"
+											name="password">
+									</div>
+								</div>
+								<div class="login_remember_box">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox"
+											id="flexCheckDefault" name="remember"> <label
+											class="form-check-label" for="flexCheckDefault">
+											Nhá»› máº­t kháº©u </label>
+									</div>
+									 <a th:href="@{/forgot/form}" class="forget_password"> QuĂªn máº­t kháº©u </a>
+								</div>
+								<div class="login_btn_wrapper">
+									<button class="btn btn-primary login_btn btn-square btn-main">
+										Ä�Äƒng nháº­p</button>
+								</div>
+								<div class="row text-center">
+									<i class="alert alert-danger" th:text="${message}"></i>
+								</div>
+								
+								<div class="login_message">
+									<p>
+										Báº¡n chÆ°a cĂ³ tĂ i khoáº£n ? <a th:href="@{/register/form}"> Ä�Äƒng kĂ½ </a>
+									</p>
+								</div>
+							</form>
+						</div>
+						<!-- /.login_wrapper-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<div class="card">
+	<div class="card-header">PRODUCT EDITION</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<label for="image"> <img style="width: 100%"
+					ng-src="/assets/images/{{form.image}}">
+				</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<label  for="usr">Name:</label> <input id="us" ng-model="form.name"
+							type="text" class="form-control" >
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="usr">Price:</label> <input ng-model="form.price"
+							type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<label for="usr">file</label><input type="file"
+							class="form-control-file border" onchange="angular.element(this).scope().imageChanged(this.files)">
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="usr">Catygory:</label>
+						<div class="form-group">
+							<select ng-model="form.category.id" class="form-control">
+								<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<label for="usr">Create Date:</label><input
+							ng-model="form.createDate" type="date" class="form-control">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer text-center">
+		<button id="create" ng-click="create()" type="button" class="btn btn-primary">
+			<b class="fa fa-plus-square"></b> Create
+		</button>
+		<button id="update" ng-click="update()" type="button" class="btn btn-success"> <b class="fa fa-upload"></b> Update</button>
+		<button id="delete" ng-click="delete(form.id)" type="button" class="btn btn-danger">
+			<b class="fa fa-trash"></b> Delete
+		</button>
+		<button ng-click="reset()" type="button" class="btn btn-info"> <b class="fa fa-refresh"></b> Resert</button>
+	</div>
+</div>

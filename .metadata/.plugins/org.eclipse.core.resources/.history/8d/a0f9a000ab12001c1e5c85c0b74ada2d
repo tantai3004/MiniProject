@@ -1,0 +1,57 @@
+package taidtpc00715;
+
+import java.util.concurrent.TimeUnit;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class TestLogin {
+	@Autowired
+	HttpServletRequest req;
+
+	public WebDriver driver;
+
+	@DataProvider(name = "db")
+	public Object[][] createData() {
+		return new Object[][] { { "tantai3004", "123", true }, { "tantai3004", "12", false }
+
+		};
+	}
+
+	@Test(dataProvider = "db")
+	public void login(String username, String password, boolean mongdoi) {
+		boolean kqtt;
+		System.setProperty("webdriver.chrome.driver", "C:\\Java 6\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get("http://localhost:8080/product/list");
+		driver.manage().window().maximize();
+		try {
+			driver.findElement(By.xpath("/html/body/nav/div/nav/div/div/ul/li[3]/a")).click();
+			Thread.sleep(5000);
+			
+			driver.findElement(By.xpath("/html/body/div/section/main/div/div/div/div[2]/div/form/div[1]/div/input")).sendKeys(username);
+			driver.findElement(By.xpath("/html/body/div/section/main/div/div/div/div[2]/div/form/div[2]/div/input")).sendKeys(password);
+			driver.findElement(By.xpath("/html/body/div/section/main/div/div/div/div[2]/div/form/div[4]/button")).click();
+			Thread.sleep(5000);
+			String uri = req.getRequestURI();
+			if(uri == "http://localhost:8080/product/list" && mongdoi) {
+				kqtt = true;
+			}
+			else if(uri == "http://localhost:8080/security/login/form"  && mongdoi) {
+				kqtt = true;
+			}
+			else {
+				kqtt = false;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+}

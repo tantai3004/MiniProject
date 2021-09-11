@@ -1,0 +1,18 @@
+package taidtpc00715.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import taidtpc00715.entity.Account;
+import taidtpc00715.entity.Authority;
+
+public interface AuthorityDao extends JpaRepository<Authority, Integer>{
+	
+	@Query(value = "DELETE FROM authorities as au WHERE au.username = ?1", nativeQuery = true)
+	void deleteByUsername(String username);
+
+
+
+}

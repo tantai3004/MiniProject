@@ -1,0 +1,15 @@
+package taidtpc00715.service.Impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import taidtpc00715.dao.AccountDao;
+import taidtpc00715.entity.Account;
+import taidtpc00715.service.AccountService;
+
+@Service
+public class AccountServiceImpl implements AccountService{
+	
+}

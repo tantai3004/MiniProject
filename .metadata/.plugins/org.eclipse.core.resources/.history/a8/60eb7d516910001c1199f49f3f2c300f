@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main class="row" style="margin-top: -50px">
+		<section class="py-5">
+			<div class="container px-4 px-lg-5 mt-5">
+				<div
+					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					<div th:each="p : ${items}" class="col mb-5">
+						<div class="card h-100 poly-item">
+							<!-- Product image-->
+							<a th:href="@{|/product/detail/${p.id}|}"> <img style="margin-left: 5px"
+								class="card-img-top" th:src="@{|/assets/images/${p.image}|}"
+								alt="..." />
+							</a>
+							<!-- Product details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- Product name-->
+									<h5 class="fw-bolder" th:utext="${p.name}"></h5>
+									<!-- Product price-->
+									$[[${p.price}]]
+								</div>
+							</div>
+							<!-- Product actions-->
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center">
+									<button class="btn btn-outline-dark mt-auto"
+										th:attr="ng-click= @{|cart.add(${p.id})|}">Thêm vào giỏ hàng</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<th:block th:if="${loai == null}">
+		<div class="card-footer text-center">
+			<a th:href="@{|/product/list?p=0|}" type="button"
+				class="btn btn-primary">
+				<b class="fa fa-fast-backward"></b>
+			</a>
+			<th:block>
+			<a th:if="${pp > 0}" th:href="@{|/product/list?p= ${pp -1 }|}" type="button" class="btn btn-primary">
+				<b class="fa fa-backward"></b>
+			</a>
+			<a th:unless="${pp > 0}" th:href="@{|/product/list?p= ${items.totalPages-1}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-backward"></b>
+			</a>
+			<button ng-click="pager.first()" type="button"
+				class="btn btn-success">[[${pp +1}]] of
+				[[${items.totalPages-1}]]</button>
+			<a th:if="pp < items.totalPages-1" th:href="@{|/product/list?p= ${pp +1 }|}" type="button" class="btn btn-primary">
+				<b class="fa fa-forward"></b>
+			</a>
+			<a th:unless="pp < items.totalPages-1" th:href="@{|/product/list?p=0|}" type="button" class="btn btn-primary">
+				<b class="fa fa-forward"></b>
+			</a>
+			 </th:block>
+			<a th:href="@{|/product/list?p=${items.totalPages-1}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-fast-forward"></b>
+			</a>
+		</div>
+		</th:block>
+		<th:block th:unless="${loai == null}">
+		<div class="card-footer text-center">
+			<a th:href="@{|/product/list?p=0&&cid=${loai}|}" type="button"
+				class="btn btn-primary">
+				<b class="fa fa-fast-backward"></b>
+			</a>
+			<th:block>
+			<a th:if="${pp > 0}" th:href="@{|/product/list?p= ${pp -1 }&&cid=${loai}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-backward"></b>
+			</a>
+			<a th:unless="${pp > 0}" th:href="@{|/product/list?p= ${items.totalPages-1}&&cid=${loai}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-backward"></b>
+			</a>
+			<button ng-click="pager.first()" type="button"
+				class="btn btn-success">[[${pp +1}]] of
+				[[${items.totalPages-1}]]</button>
+			<a th:if="pp < items.totalPages-1" th:href="@{|/product/list?p= ${pp +1 }&&cid=${loai}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-forward"></b>
+			</a>
+			<a th:unless="pp < items.totalPages-1" th:href="@{|/product/list?p=0&&cid=${loai}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-forward"></b>
+			</a>
+			 </th:block>
+			<a th:href="@{|/product/list?p=${items.totalPages-1}&&cid=${loai}|}" type="button" class="btn btn-primary">
+				<b class="fa fa-fast-forward"></b>
+			</a>
+		</div>
+		</th:block>
+	</main>
+</body>
+</html>

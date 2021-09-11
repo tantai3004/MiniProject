@@ -1,0 +1,29 @@
+package taidtpc00715;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class TestLogin {
+
+	public WebDriver driver;
+
+	@DataProvider(name = "db")
+	public Object[][] createData() {
+		return new Object[][] { { "tantai3004", "123", true }, { "tantai3004", "12", false }
+
+		};
+	}
+
+	@Test(dataProvider = "db")
+	public void login(String username, String password, boolean mongdoi) {
+		System.setProperty("webdriver.chrome.driver", "C:\\Java 6\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get("https://mail.google.com");
+		driver.manage().window().maximize();
+	}
+}

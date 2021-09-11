@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;student&apos; to &apos;templates&apos;&#x0D;&#x0A;- Original project: &apos;taidtpc0715_Lab3&apos;&#x0D;&#x0A;- Destination element: &apos;templates&apos;&#x0D;&#x0A;- Original element: &apos;student&apos;" description="Copy folder" element1="src/main/resources/templates/student" files="0" flags="589830" folders="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1626171961308" target="/taidtpc0715_Lab4/src/main/resources/templates" units="0" version="1.0"/>
+</session>

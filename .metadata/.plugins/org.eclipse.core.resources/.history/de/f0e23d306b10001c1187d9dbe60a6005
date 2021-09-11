@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="container-fluid" th:fragment="shopping-cart" style="margin-bottom: 30px; margin-top: 30px">
+			<div class="row">
+				<aside class="col-lg-9">
+					<div class="card">
+						<div class="table-responsive">
+							<table class="table table-borderless table-shopping-cart">
+								<thead class="text-muted">
+									<tr class="small text-uppercase">
+										<th scope="col">Sáº£n pháº©m</th>
+										<th scope="col" width="120">GiĂ¡</th>
+										<th scope="col" width="120">Sá»‘ lÆ°á»£ng</th>
+										<th scope="col" width="120">Tá»•ng giĂ¡</th>
+										<th scope="col" class="text-right d-none d-md-block"
+											width="200"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cart.items">
+										<td>
+											<figure class="itemside align-items-center">
+												<div class="aside">
+													<img th:src="@{/assets/images/{{item.image}}}"
+														class="img-sm">
+												</div>
+												<figcaption class="info">
+													<a href="#" class="title text-dark" data-abc="true">{{item.name}}</a>
+												</figcaption>
+											</figure>
+										</td>
+										<td>
+											<div class="price-wrap">
+												<var class="price">${{item.price | number : 2}}</var>
+											</div>
+										</td>
+										<td><input ng-change="cart.saveTocalStorage()"
+											ng-model="item.qty" type="number" min="1"></td>
+										<td>
+											<div class="price-wrap">
+												<var class="price">${{item.qty * item.price | number :
+													2}}</var>
+											</div>
+										</td>
+										<td class="text-right d-none d-md-block"><button
+												class="btn btn-light" ng-click="cart.remove(item.id)"
+												data-abc="true">Xác nhận mua hàng</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</aside>
+				<aside class="col-lg-3">
+					<div class="card">
+						<div class="card-body">
+							<dl class="dlist-align">
+								<dt>Total price:</dt>
+								<dd class="text-right ml-3">${{cart.amount | number : 2}}</dd>
+							</dl>
+							<dl class="dlist-align">
+								<dt>Total:</dt>
+								<dd class="text-right text-dark b ml-3">
+									<strong>${{cart.amount | number : 2}}</strong>
+								</dd>
+							</dl>
+							<hr>
+							<a th:href="@{/order/checkout}"
+								class="btn btn-out btn-primary btn-square btn-main"
+								data-abc="true">Ä�áº·t hĂ ng </a> <a href="/"
+								class="btn btn-out btn-success btn-square btn-main mt-2"
+								data-abc="true">Tiáº¿p tá»¥c mua sáº¯m</a>
+							<button ng-click="cart.clear()"
+								class="btn btn-out btn btn-danger btn-square btn-main mt-2">
+								XĂ³a toĂ n bá»™ giá»� hĂ ng</i>
+							</button>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
